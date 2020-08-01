@@ -1,0 +1,68 @@
+<! !DOCTYPE html>
+    <html>
+
+    <head>
+        <meta charset="utf-8">
+
+        <link rel="stylesheet" href="timer.css">
+    </head>
+
+    <body>
+        <p style="padding-bottom: 0%; margin-left: 7%; width: auto;  margin-top: 1em; font-weight: bold; font-size: 3em;"
+            class="putput">
+            Hello</p>
+        <div class="timer">
+            <div class="controls">
+                <button onclick="startPause()" class="Start">Start</button>
+                <button onclick="reset()" class="Start">Stop</button>
+                <button onclick="increment()" class="Start">Reset</button>
+            </div>
+            <div class="display">
+                <span class="output"></span>
+                <span class="putput"></span>
+                <span class="output"></span>
+            </div>
+        </div>
+        <script src=" timer.js">
+
+            var time = 0;
+            var running = 0;
+
+            function startPause() {
+                if (running == 0) {
+                    running = 1;
+                    increment();
+                    document.getElementsByClassName("Start").innerHTML = "Pause"
+                }
+                else {
+                    running = 0;
+                    document.getElementsByClassName("Start").innerHTML = "Resume"
+                }
+            }
+
+            function reset() {
+                running = 0;
+                time = 0;
+                document.getElementsByClassName("Start").innerHTML = "Start"
+            }
+
+            function increment() {
+                if (running == 1) { }
+                setTimeout(function () {
+                    time++;
+                    var mins = Math.floor(time / 10 / 60);
+                    var secs = Math.floor(time / 10);
+                    var tenths = time % 10;
+                    document.getElementsByClassName("output").innerHTML = mins + ":" + secs + ":" + tenths;
+                    increment();
+                }, 100);
+            }
+
+
+
+
+
+        </script>
+    </body>
+
+    </html>

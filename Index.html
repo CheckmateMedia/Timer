@@ -1,0 +1,90 @@
+<! !DOCTYPE html>
+    <html>
+
+    <head>
+
+        <script>
+            var time = 0;
+            var started;
+            var running = 0;
+
+            function startpause() {
+                if (running == 0) {
+                    running = 1
+                    increment();
+                    document.getElementById("startPause").innerHTML = "Pause"
+                } else {
+                    running = 0;
+                    document.getElementById("startPause").innerHTML = "Resume"
+                }
+            }
+            function reset() {
+                running = 0;
+                time = 0;
+                document.getElementById("startPause").innerHTML = "Start"
+                document.getElementById("output").innerHTML = "00:00:00";
+            }
+
+            function increment() {
+                if (running == 1) {
+                    setTimeout(function () {
+                        time++;
+                        var mins = Math.floor(time / 10 / 60);
+                        var secs = Math.floor(time / 10);
+                        var tenths = time % 10;
+                        if (mins < 10) {
+                            mins = 0 + mins;
+                        }
+                        if (secs < 10) {
+                            secss = 0 + secs;
+                        }
+
+                        document.getElementById("output").innerHTML = mins + ":" + secs + ":" + tenths;
+                        increment();
+                    }, 100);
+                }
+            }
+        </script>
+
+    </head>
+
+    <body id="grad1">
+        <div style="font-size: 3em; color: wheat;  margin-left: 25%; margin-top: 1%; "><b>Jessie is a noodle headed
+                hipster.</b><br><br>Biscuits baby. I said mother peking <br>duck biscuits.<br>Scrumptious with plump
+            tits.<br>Yeah that was a bit of a poem. For YOU!!!</div>
+        <div style="  margin-left: 33%; margin-top: 10%; ">
+            <p style=" font-weight: bold; font-size: large; margin-left: 7%; font-size: large;" id="output"></p>
+            <div id="controls">
+                <button style=" background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;" id="startPause" onclick="startpause()">Start</button>
+
+                <button style="background-color: #4c87af;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;" onclick="reset()">Reset</button>
+            </div>
+        </div>
+    </body>
+
+    <style>
+        #grad1 {
+            height: 200px;
+            background-image: linear-gradient(rgb(12, 248, 225), rgb(149, 213, 255));
+        }
+    </style>
+
+    </html>
